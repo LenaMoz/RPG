@@ -1,0 +1,84 @@
+#-----start-------
+print("hello, someone..")
+print("okey... you need a name.")
+print("so..  what should I call you?")
+
+name = input('enter your new name:')
+life = 200
+mana = 100
+print("-"*40)
+print("welcome to the game " f"{name}")
+print("your hp: " f"{life}" " and your mana:" f"{mana}")
+#-----3linijki------
+
+#-------ataki-----
+
+from random import randint, choice
+
+def normal_attack():
+    return randint(5, 10)
+
+
+def lightning():
+    global mana
+    if mana < 15:
+        print("-"*50)
+        print("you don't have enough mana")
+        return 0
+    mana -= 15
+    return randint(12, 20)
+
+
+def choose_attack():
+    print('a - Normal attack')
+    print('b - lightning')
+    co = input().upper()
+    if co == 'a':
+        return normal_attack()
+    elif co == 'b':
+        return lightning()
+    else:
+        print("no attack selected, to bad")
+        return 0
+#----17linijek-----
+
+#---przeeeeeeeeeecywnicy------;-;
+def random_oponent():
+    opponents = [
+        ["small hybrid", 25, 10, 15],
+        ["Big hybrid", 35, 15, 25],
+        ["smol water slime", 5, 1, 0],
+        ["big water slime", 15, 2, 5],
+    ]
+    return choice(opponents)
+#----9linijek??-----
+
+#----przecywnicyv2------
+pokonane_stwóry = 0
+
+
+while life > 0:
+    opponent = random_oponent()
+    print("-"*40)
+
+
+    while opponent[1] > 0 and life > 0:
+        print(f"{name} fight against {opponent[0]}")
+        print(f"opponent have {opponent[1]} HP and deals {opponent[2]} damage")
+       
+        life -= opponent[2]
+        if life <= 0:
+            print("imagine being dead")
+            break
+
+
+        print(f"you have {life} HP and {mana} mana")
+        atak = choose_attack()
+        opponent[1] -= atak
+        print(f"deals {atak} damage")
+
+
+    if opponent[1] <= 0:
+        pokonane_stwóry += 1
+
+#----11linijke-----
